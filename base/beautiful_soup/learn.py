@@ -37,3 +37,16 @@ print(soup.p.attrs['name'])
 print(soup.p.string)
 
 # 4. 嵌套选择
+print(soup.head.title)
+print(type(soup.head.title))
+print(soup.head.title.string)
+
+# 5. 关联选择
+# 5.1 子节点和子孙节点
+# 使用contents属性，调用子节点
+print(soup.body.contents)
+# 使用children属性，获取子节点
+print("使用children属性，获取子孙节点")
+for i, child in enumerate(soup.body.children):
+    print(i, child)
+
