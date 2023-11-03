@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
@@ -116,11 +117,44 @@ import time
 # browser.forward()
 
 # 11. Cookies 使用 Selenium ，还可以方便地对 Cookies 进行操作，例如获取 添加 删除 Cookies
-browser = webdriver.Chrome()
-browser.get('https://www.zhihu.com/explore')
-print(browser.get_cookies())
-browser.add_cookie({'name': 'name', 'domain': 'www.zhihu.com', 'value': 'germey'})
-print(browser.get_cookies())
-browser.delete_all_cookies()
-print(browser.get_cookies())
+# browser = webdriver.Chrome()
+# browser.get('https://www.zhihu.com/explore')
+# print(browser.get_cookies())
+# browser.add_cookie({'name': 'name', 'domain': 'www.zhihu.com', 'value': 'germey'})
+# print(browser.get_cookies())
+# browser.delete_all_cookies()
+# print(browser.get_cookies())
 
+# 12. 选项卡管理
+# browser = webdriver.Chrome()
+# browser.get('https://www.baidu.com')
+# browser.execute_script('window.open()')
+# print(browser.window_handles)
+# # 第二个选项卡
+# browser.switch_to.window(browser.window_handles[1])
+# browser.get('https://python.org')
+# time.sleep(1)
+# # 返回第一个选项卡
+# browser.switch_to.window(browser.window_handles[0])
+# browser.get('https://www.zhihu.com')
+
+# 13. 异常处理在使用 Selenium 的过程中，难免会遇到一些异常，例如超时、节点未找到等错误，一旦出现此类
+# 错误，程序便不会继续运行了。这里我们可以使用 try except 语句来捕获各种异常。
+# browser = webdriver.Chrome()
+# try:
+#     browser.get('https://www.baidu.com')
+# except TimeoutException:
+#     print('Time Out')
+# try:
+#     browser.find_element_by_id('hello')
+# except NoSuchElementException:
+#     print('No Element')
+# finally:
+#     browser.close()
+
+# 14. 无界面模式
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+browser = webdriver.Chrome()
+browser.get('https://www.baidu.com')
+print(browser.page_source)
