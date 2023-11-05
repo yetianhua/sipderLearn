@@ -55,15 +55,9 @@ def next_page():
 
 
 def first_page():
-    browser.get('https://s.taobao.com')
-    time.sleep(1)
-    # 1. 输入内容
-    inp = browser.find_element(By.XPATH, "//input[@id='q']")
-    print(inp)
-    submit = browser.find_element(By.XPATH, "//button[@class='btn-search']")
-    inp.clear()
-    inp.send_keys("ipad")
-    submit.click()
+    # 根据浏览器已经打开的窗口进行爬虫，打开的url为https://s.taobao.com/search?initiative_id=staobaoz_20231105&q=ipad
+    # 把tab切换到最新的tab
+    browser.switch_to.window(browser.window_handles[0])
     # 1. 把页面拉到最后面
     scrollBottom()
     # 2. 爬取数据
